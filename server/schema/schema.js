@@ -100,9 +100,16 @@ const mutation = new GraphQLObjectType({
       args: {
         id: { type: GraphQLNonNull(GraphQLID) },
       },
-      resolve(parent, args) {
-        // Check if you're using Mongoose 5.0.0 or later
-        return Client.findByIdAndDelete(args.id); // Use findByIdAndDelete instead
+      async resolve(parent, args) {
+        try {
+          const projects = await Project.find({ clientId: args.id });
+          for (const project of projects) {
+            await project.deleteOne();
+          }
+          return Client.findByIdAndDelete(args.id);
+        } catch (error) {
+          throw new Error('Error deleting client and associated projects');
+        }
       },
     },
 
@@ -147,7 +154,7 @@ const mutation = new GraphQLObjectType({
         return Project.findByIdAndDelete(args.id);
       },
     },
-
+    
     // Update a project
     updateProject: {
       type: ProjectType,
@@ -180,7 +187,6 @@ const mutation = new GraphQLObjectType({
         );
       },
     },
-    
   },
 });
 
