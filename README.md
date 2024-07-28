@@ -12,7 +12,8 @@ This is a full-stack Project Management App built with Node.js, Express, GraphQL
 6. [Server Setup](#server-setup)
 7. [Running the App](#running-the-app)
 8. [Contributing](#contributing)
-9. [License](#license)
+9. [Demo](#demo)
+10. [License](#license)
 
 ## Installation
 
@@ -61,71 +62,6 @@ npm install @apollo/client graphql bootstrap font-awesome
 - **Bootstrap**: CSS framework for responsive design.
 - **Font Awesome**: Icon set and toolkit.
 
-## Project Structure
-
-```
-project-management-app/
-├── client/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── queries/
-│   │   ├── App.js
-│   │   ├── index.js
-│   │   └── ...
-├── config/
-│   ├── models/
-│   │   ├── Client.js
-│   │   ├── Project.js
-│   └── db.js
-├── graphql/
-│   ├── schema.js
-├── routes/
-│   ├── clients.js
-│   ├── projects.js
-├── .env
-├── package.json
-├── server.js
-└── ...
-```
-
-## GraphQL API
-
-### Types
-
-#### ProjectType
-
-```javascript
-const ProjectType = new GraphQLObjectType({
-  name: 'Project',
-  fields: () => ({
-    id: { type: GraphQLID },
-    name: { type: GraphQLString },
-    description: { type: GraphQLString },
-    status: { type: GraphQLString },
-    client: {
-      type: ClientType,
-      resolve(parent, args) {
-        return Client.findById(parent.clientId);
-      },
-    },
-  }),
-});
-```
-
-#### ClientType
-
-```javascript
-const ClientType = new GraphQLObjectType({
-  name: 'Client',
-  fields: () => ({
-    id: { type: GraphQLID },
-    name: { type: GraphQLString },
-    email: { type: GraphQLString },
-    phone: { type: GraphQLString },
-  }),
-});
-```
 
 ### Queries
 
@@ -207,6 +143,15 @@ npm start
 4. Commit your changes (`git commit -m 'Add some feature'`).
 5. Push to the branch (`git push origin feature-branch`).
 6. Open a pull request.
+
+## Demo
+
+![Screenshot 2024-07-28 145804](https://github.com/user-attachments/assets/18d8e7b9-5f3e-489d-8762-2dbcfd7d6e18)
+![Screenshot 2024-07-28 145817](https://github.com/user-attachments/assets/3e4af026-6d6a-4af9-80e2-80fa233074c1)
+![Screenshot 2024-07-28 145926](https://github.com/user-attachments/assets/92cfb053-6337-4981-a930-6d86dc7f68c9)
+![Screenshot 2024-07-28 145948](https://github.com/user-attachments/assets/cf789853-faa0-4816-9561-c75aa54f7f94)
+![Screenshot 2024-07-28 150002](https://github.com/user-attachments/assets/fca91b32-052d-4edb-967c-c0b13dd004eb)
+
 
 ## License
 
